@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3E4DC715-2DE6-43EB-96FC-04226920F8EF}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Debug.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="InterBaseWatchdogService.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Debug">
+        <MSBuild Projects="Debug.dproj"/>
+    </Target>
+    <Target Name="Debug:Clean">
+        <MSBuild Projects="Debug.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Debug:Make">
+        <MSBuild Projects="Debug.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="InterBaseWatchdogService">
+        <MSBuild Projects="InterBaseWatchdogService.dproj"/>
+    </Target>
+    <Target Name="InterBaseWatchdogService:Clean">
+        <MSBuild Projects="InterBaseWatchdogService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="InterBaseWatchdogService:Make">
+        <MSBuild Projects="InterBaseWatchdogService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Debug;InterBaseWatchdogService"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Debug:Clean;InterBaseWatchdogService:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Debug:Make;InterBaseWatchdogService:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
